@@ -23,11 +23,13 @@ public class TraceConsumer {
     // 拥有SLS Project 权限的子账号 AK、SK，注意生产中建议不要写死在代码中
     private static String AccessKeyId= "xxxxxx";
     private static String AccessKeySecret = "xxxxx";
+    // OTLP HTTP 上报点
+    private static String OtlpHttpEndpoint = "http://localhost:8080/adapt_xxx@xxx_aaa@xxx/api/otlp/traces";
 
     private static OtlpHttpSpanExporter exporter = OtlpHttpSpanExporter
             .builder()
             // HTTP 协议上报的 endpoint
-            .setEndpoint("http://localhost:8080/adapt_xxx@xxx_aaa@xxx/api/otlp/traces")
+            .setEndpoint(OtlpHttpEndpoint)
             .build();
 
     public static void main(String[] args) throws LogHubClientWorkerException, InterruptedException {
