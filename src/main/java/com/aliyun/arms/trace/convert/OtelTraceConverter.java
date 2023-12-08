@@ -42,6 +42,9 @@ public class OtelTraceConverter {
                 span.getResourcesMap().putAll(resources);
             }
             span.getResourcesMap().put("service.name", items.get("serviceName"));
+            if (items.get("ip") != null) {
+                span.getResourcesMap().put("ipv4", items.get("ip"));
+            }
             List<Span.Event> events = JSONObject.parseArray(items.get("events"), Span.Event.class);
             if (events != null) {
                 span.getEventList().addAll(events);
